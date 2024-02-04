@@ -7,6 +7,8 @@ import { useSearch } from '@/context/searchContext'
 import { Button } from '../button'
 import { Dialog } from '../dialog'
 import { icons } from '@/utils/icons'
+import logo from '../../../public/static/image/poke10-logo.svg'
+import Image from 'next/image'
 
 const Header = () => {
   const { setSearchValue } = useSearch()
@@ -28,7 +30,7 @@ const Header = () => {
 
   return (
     <header className="w-full flex justify-between items-center p-4">
-      <h1>Poke10</h1>
+      <Image src={logo} alt="Poke10 logo" width={96} />
 
       <div className="hidden md:flex w-full max-w-sm items-center space-x-2">
         <div className="w-full max-w-xl">
