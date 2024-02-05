@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, ChangeEvent, KeyboardEvent } from 'react'
+import React, { useState, ChangeEvent, KeyboardEvent, useEffect } from 'react'
 import { Input } from '@/components/input'
 import { Avatar, AvatarImage } from '../ui/avatar'
 import { useSearch } from '@/context/searchContext'
@@ -13,6 +13,7 @@ import Image from 'next/image'
 const Header = () => {
   const { setSearchValue } = useSearch()
   const [inputValue, setInputValue] = useState('')
+  const [isLoginPage, setIsLoginPage] = useState<boolean>(false)
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value)
@@ -28,8 +29,19 @@ const Header = () => {
     setSearchValue(inputValue)
   }
 
+  useEffect(() => {
+    const currentUrl = window.location.href
+
+    if (currentUrl.includes('/login' || '/registration')) {
+      setIsLoginPage(true)
+    }
+  }, [])
+
   return (
-    <header className="w-full flex justify-between items-center p-4">
+    <header
+      data-isLoginPage={isLoginPage}
+      className="w-full flex justify-between items-center p-4 data-[isLoginPage=true]:hidden"
+    >
       <Image src={logo} alt="Poke10 logo" width={96} />
 
       <div className="hidden md:flex w-full max-w-sm items-center space-x-2">
@@ -48,7 +60,7 @@ const Header = () => {
         </Button>
       </div>
 
-      <div className="flex justify-between items-center gap-2">
+      <div className="flex justify-between items-center gap-3">
         <Dialog
           onSubmit={handleSearchPokemon}
           triggerButtonLabel={icons['search']}

@@ -77,7 +77,7 @@ export default function Home() {
           </div>
         }
       >
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
           {data.map((item) => (
             <Card pokemon={item} />
           ))}

@@ -23,13 +23,13 @@ const Card = ({ pokemon }: Props) => {
     <ShadcnCard>
       <CardContent>
         {showSkeleton ? (
-          <div className="w-full flex flex-col justify-between gap-2">
+          <div className="w-full flex flex-col justify-between gap-3">
             <Skeleton className="w-full h-64 mt-6 rounded-lg" />
             <Skeleton className="w-full h-6" />
             <Skeleton className="w-full h-6" />
           </div>
         ) : (
-          <div className="w-full flex flex-col justify-between gap-2">
+          <div className="w-full flex flex-col justify-between gap-3">
             <img
               src={pokemon.sprites.other['official-artwork'].front_default}
               alt={pokemon.name}
